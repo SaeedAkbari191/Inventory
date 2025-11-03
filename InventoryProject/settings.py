@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'user_module',
     'product_module',
-    'location_module'
+    'location_module',
+    'inventory_transaction_module'
 ]
 
 MIDDLEWARE = [
