@@ -5,12 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="54e21d64-7c60-4cd0-b9f1-7bec48120156" name="Changes" comment="inventory">
+      <change afterPath="$PROJECT_DIR$/inventory_transaction_module/siganls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1499974f-a903-4bb1-aa54-111cd926e437.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/1499974f-a903-4bb1-aa54-111cd926e437/storage_v2/_src_/schema/main.uQUzAA.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/InventoryProject/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/InventoryProject/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventory_transaction_module/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/inventory_transaction_module/models.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -105,7 +117,8 @@
       <workItem from="1758168684086" duration="1000" />
       <workItem from="1758169126684" duration="32000" />
       <workItem from="1762176989267" duration="1581000" />
-      <workItem from="1762187964552" duration="4021000" />
+      <workItem from="1762187964552" duration="4871000" />
+      <workItem from="1762265406924" duration="1415000" />
     </task>
     <task id="LOCAL-00001" summary="inventory">
       <option name="closed" value="true" />
@@ -139,7 +152,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762191528581</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="inventory">
+      <option name="closed" value="true" />
+      <created>1762194440448</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1762194440448</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
