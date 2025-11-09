@@ -1,4 +1,4 @@
-# movement_module/services/strategies.py
+
 from decimal import Decimal
 from django.utils import timezone
 from django.db import transaction
@@ -7,7 +7,7 @@ from inventory_transaction_module.models import InventoryTransaction
 from inventory_transaction_module.services.stock_updater import StockUpdater
 from product_module.models import ProductConversion
 
-# یک رجیستری ساده برای ثبت استراتژی‌ها
+
 STRATEGY_REGISTRY = {}
 
 def register_strategy(movement_type):

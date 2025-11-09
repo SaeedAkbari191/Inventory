@@ -9,7 +9,7 @@ from location_module.models import Warehouse
 from inventory_transaction_module.models import InventoryTransaction
 
 
-# inventory_module and stock_module used elsewhere in services
+
 
 class MovementType(models.TextChoices):
     IN = "IN", "Inbound"
