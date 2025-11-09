@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'product_module',
     'location_module',
     'inventory_transaction_module',
-    'stock_module'
+    'stock_module',
+    'movement_module',
 ]
 
 MIDDLEWARE = [
