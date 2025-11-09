@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'inventory_transaction_module',
     'stock_module',
     'movement_module',
+    'borrow_module'
 ]
 
 MIDDLEWARE = [
