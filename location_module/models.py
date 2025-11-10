@@ -20,6 +20,13 @@ class Warehouse(models.Model):
     def __str__(self):
         return f"{self.name} ({self.code})"
 
+    def save(self, *args, **kwargs):
+        if not self.code:
+            last = Warehouse.objects.order_by("-id").first()
+            next_id = 1 if not last else last.id + 1
+            self.code = f"WH-{next_id:04d}"
+        super().save(*args, **kwargs)
+
 
 class Section(models.Model):
     warehouse = models.ForeignKey(Warehouse, on_delete=models.CASCADE, related_name="sections")
@@ -34,6 +41,13 @@ class Section(models.Model):
 
     def __str__(self):
         return f"{self.warehouse.name} - {self.name}"
+
+    def save(self, *args, **kwargs):
+        if not self.code:
+            last_section = Section.objects.filter(warehouse=self.warehouse).order_by("-id").first()
+            next_number = 1 if not last_section else last_section.id + 1
+            self.code = f"SEC-{next_number:02d}"
+        super().save(*args, **kwargs)
 
 
 class Shelf(models.Model):
@@ -50,3 +64,10 @@ class Shelf(models.Model):
 
     def __str__(self):
         return f"{self.section.warehouse.name} - {self.section.name} - {self.name}"
+
+    def save(self, *args, **kwargs):
+        if not self.code:
+            last_shelf = Shelf.objects.filter(section=self.section).order_by("-id").first()
+            next_number = 1 if not last_shelf else last_shelf.id + 1
+            self.code = f"SH-{next_number:02d}"
+        super().save(*args, **kwargs)

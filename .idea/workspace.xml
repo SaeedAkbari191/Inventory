@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="54e21d64-7c60-4cd0-b9f1-7bec48120156" name="Changes" comment="inventory">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product_module/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/product_module/models.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +50,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/LENOVO/PycharmProjects/EcommerceDjangoProject",
+    "last_opened_file_path": "C:/Users/LENOVO/PycharmProjects/InventoryProject",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -119,7 +117,8 @@
       <workItem from="1762363824042" duration="1788000" />
       <workItem from="1762663245158" duration="7234000" />
       <workItem from="1762692751220" duration="3367000" />
-      <workItem from="1762751004552" duration="3671000" />
+      <workItem from="1762751004552" duration="3811000" />
+      <workItem from="1762783801888" duration="352000" />
     </task>
     <task id="LOCAL-00001" summary="inventory">
       <option name="closed" value="true" />
@@ -225,7 +224,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762751479855</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="inventory">
+      <option name="closed" value="true" />
+      <created>1762755676677</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1762755676677</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
