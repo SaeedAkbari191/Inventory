@@ -1,4 +1,5 @@
 from django.db import models
+import uuid
 
 
 class Supplier(models.Model):
@@ -41,6 +42,11 @@ class Product(models.Model):
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def save(self, *args, **kwargs):
+        if not self.sku:
+            self.sku = f"PRD-{uuid.uuid4().hex[:8].upper()}"
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name
