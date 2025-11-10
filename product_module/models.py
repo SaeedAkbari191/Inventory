@@ -1,5 +1,6 @@
 from django.db import models
 import uuid
+from django.utils.text import slugify
 
 
 class Supplier(models.Model):
@@ -35,7 +36,8 @@ class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='products')
     supplier = models.ForeignKey(Supplier, on_delete=models.SET_NULL, related_name='products', null=True, blank=True)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE, related_name='products')
-    sku = models.CharField(max_length=100, unique=True)
+    sku = models.CharField(default="", null=False, blank=True, max_length=100, unique=True)
+    slug = models.SlugField(default="", null=False, blank=True, max_length=200, unique=True, db_index=True)
     base_unit = models.CharField(max_length=100)
     price = models.DecimalField(max_digits=12, decimal_places=2)
     description = models.TextField(blank=True, null=True)
@@ -46,6 +48,8 @@ class Product(models.Model):
     def save(self, *args, **kwargs):
         if not self.sku:
             self.sku = f"PRD-{uuid.uuid4().hex[:8].upper()}"
+        self.slug = slugify(self.name)
+
         super().save(*args, **kwargs)
 
     def __str__(self):
