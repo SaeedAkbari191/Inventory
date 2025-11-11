@@ -1,3 +1,4 @@
+# movement_module/models.py
 from decimal import Decimal
 from django.db import models, transaction
 from django.utils import timezone
@@ -7,8 +8,6 @@ from user_module.models import User
 from product_module.models import Product
 from location_module.models import Warehouse
 from inventory_transaction_module.models import InventoryTransaction
-
-
 
 
 class MovementType(models.TextChoices):
@@ -26,7 +25,7 @@ class MovementStatus(models.TextChoices):
 
 
 class ProductMovement(models.Model):
-    reference_no = models.CharField(max_length=128, unique=True)
+    reference_no = models.CharField(max_length=128, unique=True, blank=True, default="")
     movement_type = models.CharField(max_length=20, choices=MovementType.choices, db_index=True)
     source_warehouse = models.ForeignKey(
         Warehouse, on_delete=models.SET_NULL, null=True, blank=True, related_name="outgoing_movements"
@@ -79,15 +78,48 @@ class ProductMovement(models.Model):
         """
         if self.status != MovementStatus.DRAFT:
             raise ValueError("Only DRAFT movements can be approved.")
+        # validate business rules before approving
+        self.clean()
+
+        # set approved state (atomic context not required here because process will use its own transaction)
         self.status = MovementStatus.APPROVED
         self.approved_by = user or self.approved_by
         self.approved_at = timezone.now()
         self.save(update_fields=['status', 'approved_by', 'approved_at'])
 
-        # Dispatch to MovementProcessor (service) — it will handle idempotency and atomicity
+        # Dispatch to MovementProcessor (service) — it will handle idempotency and transaction atomicity.
         from .services.processor import MovementProcessor
+        # Do not swallow exceptions: let caller/admin see why processing failed.
         MovementProcessor.process(self, run_async=run_async)
         return self
+
+    def save(self, *args, **kwargs):
+        # generate reference_no only when movement_type is present
+        if not self.reference_no and self.movement_type:
+            prefix_map = {
+                'IN': 'MOV-IN',
+                'OUT': 'MOV-OUT',
+                'TRANSFER': 'MOV-TRF',
+            }
+            prefix = prefix_map.get(self.movement_type, 'MOV-UNK')
+
+            last_movement = (
+                ProductMovement.objects
+                .filter(reference_no__startswith=prefix)
+                .order_by('-id')
+                .first()
+            )
+            if last_movement and '-' in last_movement.reference_no:
+                try:
+                    last_number = int(last_movement.reference_no.split('-')[-1])
+                except Exception:
+                    last_number = 0
+            else:
+                last_number = 0
+            new_number = last_number + 1
+            self.reference_no = f"{prefix}-{new_number:05d}"
+
+        super().save(*args, **kwargs)
 
 
 class MovementSegment(models.Model):
@@ -124,6 +156,35 @@ class MovementSegment(models.Model):
 
     def __str__(self):
         return f"{self.movement.reference_no} - {self.product.name} ({self.quantity} {self.unit})"
+
+    def clean(self):
+        # basic validation for each segment
+        if self.quantity is None or self.quantity <= 0:
+            raise ValidationError("Quantity must be a positive number.")
+        # Check warehouse presence depending on movement type (segment-level fallback to movement-level)
+        mtype = getattr(self.movement, "movement_type", None)
+        if mtype == MovementType.OUT:
+            if not (self.from_warehouse or self.movement.source_warehouse):
+                raise ValidationError("Outbound segment must have a source warehouse (either segment or movement).")
+        if mtype == MovementType.IN:
+            if not (self.to_warehouse or self.movement.destination_warehouse):
+                raise ValidationError("Inbound segment must have a destination warehouse (either segment or movement).")
+        if mtype == MovementType.TRANSFER:
+            src = self.from_warehouse or self.movement.source_warehouse
+            dst = self.to_warehouse or self.movement.destination_warehouse
+            if not (src and dst):
+                raise ValidationError("Transfer segment must have both source and destination warehouses.")
+            if src == dst:
+                raise ValidationError("Source and destination warehouses must differ for transfer segments.")
+
+    def save(self, *args, **kwargs):
+        # auto-assign sequence if zero or not provided: next number within same movement
+        if not self.sequence:
+            last = MovementSegment.objects.filter(movement=self.movement).order_by('-sequence').first()
+            self.sequence = 1 if not last else last.sequence + 1
+        # run clean to ensure validation both in admin and programmatic creation
+        self.clean()
+        super().save(*args, **kwargs)
 
     def mark_processed(self, tx_list=None):
         self.processed = True

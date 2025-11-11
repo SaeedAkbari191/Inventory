@@ -3,17 +3,13 @@ from django.db import transaction
 from .strategies import get_strategy_for
 from ..models import ProductMovement, MovementStatus
 from django.utils import timezone
+
+
 class MovementProcessor:
-    """
-    دریافت یک ProductMovement و اجرای استراتژی مناسب.
-    این کلاس مسئول idempotency، logging و تغییر وضعیت کلی movement است.
-    """
 
     @classmethod
     def process(cls, movement: ProductMovement, run_async=False):
-        """
-        اگر run_async=True، باید این متد job را در queue بفرستد (Celery) — در این نمونه sync است.
-        """
+
         # idempotency: اگر قبلاً پردازش شده، کاری نکن
         if movement.processed:
             return []
@@ -24,9 +20,10 @@ class MovementProcessor:
         strategy = get_strategy_for(movement.movement_type)
 
         created_txs = []
+
         # کل فرایند را در یک transaction دیتابیسی امن انجام می‌دهیم
+        # هر segment نیز داخل استراتژی خودش atomic دارد (double safety)
         with transaction.atomic():
-            # اجرا می‌کنیم (هر strategy خودش روی segments قفل می‌گیرد)
             created_txs = strategy.process(movement)
 
             # اگر همه segmentها پردازش شدند -> movement را تکمیل کن

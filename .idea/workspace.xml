@@ -5,9 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="54e21d64-7c60-4cd0-b9f1-7bec48120156" name="Changes" comment="inventory">
+      <change afterPath="$PROJECT_DIR$/movement_module/services/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/InventoryProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/InventoryProject.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/location_module/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/location_module/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movement_module/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/movement_module/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movement_module/services/processor.py" beforeDir="false" afterPath="$PROJECT_DIR$/movement_module/services/processor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/movement_module/services/strategies.py" beforeDir="false" afterPath="$PROJECT_DIR$/movement_module/services/strategies.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,27 +49,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Django Server.InventoryProject.executor": "Run",
-    "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/LENOVO/PycharmProjects/InventoryProject",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Django Server.InventoryProject.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenDjangoStructureViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/LENOVO/PycharmProjects/InventoryProject&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "sqlite"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;sqlite&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="InventoryProject" type="Python.DjangoServer" factoryName="Django server">
       <module name="InventoryProject" />
@@ -120,7 +124,9 @@
       <workItem from="1762663245158" duration="7234000" />
       <workItem from="1762692751220" duration="3367000" />
       <workItem from="1762751004552" duration="3811000" />
-      <workItem from="1762783801888" duration="4023000" />
+      <workItem from="1762783801888" duration="4702000" />
+      <workItem from="1762844906946" duration="5084000" />
+      <workItem from="1762878911056" duration="4648000" />
     </task>
     <task id="LOCAL-00001" summary="inventory">
       <option name="closed" value="true" />
@@ -242,7 +248,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762784275391</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="inventory">
+      <option name="closed" value="true" />
+      <created>1762788597344</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1762788597344</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
